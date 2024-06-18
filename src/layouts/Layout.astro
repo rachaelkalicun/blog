@@ -1,7 +1,6 @@
 ---
 import { LOCALE, SITE } from "@config";
 import "@styles/base.css";
-import { ViewTransitions } from "astro:transitions";
 
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
@@ -12,7 +11,6 @@ export interface Props {
   ogImage?: string;
   canonicalURL?: string;
   pubDatetime?: Date;
-  modDatetime?: Date | null;
   scrollSmooth?: boolean;
 }
 
@@ -23,7 +21,6 @@ const {
   ogImage = SITE.ogImage,
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
   pubDatetime,
-  modDatetime,
   scrollSmooth = false,
 } = Astro.props;
 
@@ -67,14 +64,6 @@ const socialImageURL = new URL(
         />
       )
     }
-    {
-      modDatetime && (
-        <meta
-          property="article:modified_time"
-          content={modDatetime.toISOString()}
-        />
-      )
-    }
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -87,7 +76,7 @@ const socialImageURL = new URL(
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
@@ -104,8 +93,6 @@ const socialImageURL = new URL(
         />
       )
     }
-
-    <ViewTransitions />
 
     <script is:inline src="/toggle-theme.js"></script>
   </head>

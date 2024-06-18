@@ -15,16 +15,8 @@ export interface Props {
 
 const { post } = Astro.props;
 
-const {
-  title,
-  author,
-  description,
-  ogImage,
-  canonicalURL,
-  pubDatetime,
-  modDatetime,
-  tags,
-} = post.data;
+const { title, author, description, ogImage, canonicalURL, pubDatetime, tags } =
+  post.data;
 
 const { Content } = await post.render();
 
@@ -39,7 +31,6 @@ const layoutProps = {
   author,
   description,
   pubDatetime,
-  modDatetime,
   canonicalURL,
   ogImage: ogUrl,
   scrollSmooth: true,
@@ -67,12 +58,7 @@ const layoutProps = {
   </div>
   <main id="main-content">
     <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
-    <Datetime
-      pubDatetime={pubDatetime}
-      modDatetime={modDatetime}
-      size="lg"
-      className="my-2"
-    />
+    <Datetime pubDatetime={pubDatetime} size="lg" className="my-2" />
     <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
       <Content />
     </article>
